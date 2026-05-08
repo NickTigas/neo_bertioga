@@ -1,0 +1,13 @@
+RODAR
+
+mount c: F:\Neo_Bertioga
+
+c:
+
+base
+
+====================================================
+CONSTRUIR
+
+tasm base.asm
+tlink base.obj
