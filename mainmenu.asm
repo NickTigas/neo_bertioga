@@ -1,4 +1,4 @@
-﻿PROC MENU_INPUT
+﻿﻿PROC MENU_INPUT
 ;{
 	PUSH AX
 	PUSH BX
@@ -283,7 +283,11 @@ PROC MENU_CLICK
 
 	@@PLAY: ;{
 
-	;}
+    CALL MENU
+
+    JMP MAINMENU
+
+;}
 
 	;@@END_PROC:
 	;RET

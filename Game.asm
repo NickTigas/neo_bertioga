@@ -1,16 +1,355 @@
 
-;*****************************************************************************
-;*****************************************************************************
-
-PROC MENU 
+PROC MENU
 ;{
 
-	@@PRINT_PAC: ;{
-		CALL MAINMENU
-	
+    MOV [NPC_INDEX], 0
+
+GAME_LOOP:
+
+    ;========================
+    ; terminou?
+    ;========================
+
+    MOV AX, [NPC_INDEX]
+
+    CMP AX, [TOTAL_NPCS]
+    JB @@CONTINUE_GAME
+    JMP WIN_GAME
+
+@@CONTINUE_GAME:
+
+    ;========================
+    ; limpa tela
+    ;========================
+
+    PUSH 0
+    PUSH 0
+    PUSH 320
+    PUSH 200
+    PUSH BLACK
+    CALL GRAPHICS_PRINTRECT
+
+    ;=================================================
+    ; NPC 1
+    ;=================================================
+
+    CMP [NPC_INDEX], 0
+    JE @@PRINT_NPC1
+    JMP @@NPC2
+
+@@PRINT_NPC1:
+
+    PUSH 3
+    PUSH 3
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC1
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 5
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC1B
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 7
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC1C
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 9
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC1D
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 11
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC1E
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 13
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC1F
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 15
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC1G
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 17
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC1H
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 19
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC1I
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 21
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC1J
+    CALL TEXT_COLORSTR
+
+    JMP @@END_PRINT
+
+    ;=================================================
+    ; NPC 2
+    ;=================================================
+
+@@NPC2:
+
+    CMP [NPC_INDEX], 1
+    JE @@PRINT_NPC2
+    JMP @@NPC3
+
+@@PRINT_NPC2:
+
+    PUSH 3
+    PUSH 3
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC2
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 5
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC2B
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 7
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC2C
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 9
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC2D
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 11
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC2E
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 13
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC2F
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 15
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC2G
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 17
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC2H
+    CALL TEXT_COLORSTR
+
+    JMP @@END_PRINT
+
+    ;=================================================
+    ; NPC 3
+    ;=================================================
+
+@@NPC3:
+
+    CMP [NPC_INDEX], 2
+    JE @@PRINT_NPC3
+    JMP @@END_PRINT
+
+@@PRINT_NPC3:
+
+    PUSH 3
+    PUSH 3
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC3
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 5
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC3B
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 7
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC3C
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 9
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC3D
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 11
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC3E
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 13
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC3F
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 15
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC3G
+    CALL TEXT_COLORSTR
+
+    PUSH 3
+    PUSH 17
+    CALL TEXT_SET_CURPOS
+    PUSH WHITE
+    PUSH OFFSET DFNPC3H
+    CALL TEXT_COLORSTR
+
+@@END_PRINT:
+
+    ;========================
+    ; decisão
+    ;========================
+
+    PUSH 3
+    PUSH 23
+    CALL TEXT_SET_CURPOS
+
+    PUSH RED
+    PUSH OFFSET TXT_DECISION
+    CALL TEXT_COLORSTR
+
+WAIT_INPUT:
+
+    MOV AH, 00h
+    INT 16h
+
+    CMP AH, 4Bh
+    JNE @@NOT_LEFT
+    JMP INPUT_LEFT
+
+@@NOT_LEFT:
+
+    CMP AH, 4Dh
+    JNE @@NOT_RIGHT
+    JMP INPUT_RIGHT
+
+@@NOT_RIGHT:
+
+    JMP WAIT_INPUT
+
+INPUT_LEFT:
+
+    MOV AL, 1
+    JMP CHECK_RESP
+
+INPUT_RIGHT:
+
+    MOV AL, 0
+
+CHECK_RESP:
+
+    MOV BX, [NPC_INDEX]
+
+    MOV SI, OFFSET RESPS
+    ADD SI, BX
+
+    MOV BL, [SI]
+
+    CMP AL, BL
+    JE @@CORRECT
+    JMP GAME_OVER
+
+@@CORRECT:
+
+    PUSH 5
+    PUSH 25
+    CALL TEXT_SET_CURPOS
+
+    PUSH GREEN
+    PUSH OFFSET TXT_OK
+    CALL TEXT_COLORSTR
+
+    MOV AH, 00
+    INT 16h
+
+    INC [NPC_INDEX]
+
+    JMP GAME_LOOP
+
+GAME_OVER:
+
+    PUSH 5
+    PUSH 25
+    CALL TEXT_SET_CURPOS
+
+    PUSH RED
+    PUSH OFFSET TXT_BAD
+    CALL TEXT_COLORSTR
+
+    MOV AH, 00
+    INT 16h
+
+    RET
+
+WIN_GAME:
+
+    PUSH 10
+    PUSH 12
+    CALL TEXT_SET_CURPOS
+
+    PUSH GREEN
+    PUSH OFFSET TXT_WIN
+    CALL TEXT_COLORSTR
+
+    MOV AH, 00
+    INT 16h
+
+    RET
+
 ;}
-ENDP MENU 
-
-
-
-
+ENDP MENU

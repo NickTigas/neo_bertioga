@@ -54,6 +54,188 @@ DATASEG
 		INCLUDE "Colors.asm"
 	;}
 
+;=================================
+; NEO BERTIOGA
+;=================================
+
+	NPC_INDEX       DW 0
+	TOTAL_NPCS      DW 10
+
+	CURRENT_RESP    DB 0
+
+;=================================
+; NPC 1
+;=================================
+
+DFNPC1 DB 'Dica: Sempre checar passaportes falsos$'
+DFNPC1B DB 'Proibidos: Santo Vicente e Guaraja$'
+DFNPC1C DB '=== Passaporte ===$'
+DFNPC1D DB 'Nome: Joao$'
+DFNPC1E DB 'Idade: 21$'
+DFNPC1F DB 'Pais: Neo Bertioga$'
+DFNPC1G DB '===== NPC =====$'
+DFNPC1H DB 'Sou Joao$'
+DFNPC1I DB 'Tenho 21 anos$'
+DFNPC1J DB 'Sou de Neo Bertioga$'
+
+;=================================
+; NPC 2
+;=================================
+
+DFNPC2 DB '=== Passaporte ===$'
+DFNPC2B DB 'Nome: Felipe$'
+DFNPC2C DB 'Idade: 23$'
+DFNPC2D DB 'Pais: Guaraja$'
+DFNPC2E DB '===== NPC =====$'
+DFNPC2F DB 'Sou Felipe$'
+DFNPC2G DB 'Tenho 23 anos$'
+DFNPC2H DB 'Sou de Guaraja$'
+
+;=================================
+; NPC 3
+;=================================
+
+DFNPC3 DB '=== Passaporte ===$'
+DFNPC3B DB 'Nome: Arthur$'
+DFNPC3C DB 'Edade: 20$'
+DFNPC3D DB 'Pais: Grande Cubata$'
+DFNPC3E DB '===== NPC =====$'
+DFNPC3F DB 'Sou Arthur$'
+DFNPC3G DB 'Tenho 20 anos$'
+DFNPC3H DB 'Sou de Grande Cubata$'
+
+;=================================
+; NPC 4
+;=================================
+
+DFNPC4 DB '=== Passaporte ===$'
+DFNPC4B DB 'Nome: Nicolas$'
+DFNPC4C DB 'Nome Social: Gabriela$'
+DFNPC4D DB 'Idade: 21$'
+DFNPC4E DB 'Pais: Grande Cubata$'
+DFNPC4F DB '===== NPC =====$'
+DFNPC4G DB 'Sou Gabriela$'
+DFNPC4H DB 'Tenho 21 anos$'
+DFNPC4I DB 'Sou de Grande Cubata$'
+
+;=================================
+; NPC 5
+;=================================
+
+DFNPC5 DB '=== Passaporte ===$'
+DFNPC5B DB 'Nome: Daniel$'
+DFNPC5C DB 'Idade: 21$'
+DFNPC5D DB 'Pais: Mais de um Santo$'
+DFNPC5E DB '===== NPC =====$'
+DFNPC5F DB 'Sou Daniel$'
+DFNPC5G DB 'Tenho 21 anos$'
+DFNPC5H DB 'Sou de Mais de um Santo$'
+
+;=================================
+; NPC 6
+;=================================
+
+DFNPC6 DB 'Regras: idade minima 28$'
+DFNPC6B DB 'Proibir turistas$'
+DFNPC6C DB '=== Passaporte ===$'
+DFNPC6D DB 'Nome: Cleiton$'
+DFNPC6E DB 'Idade: 35$'
+DFNPC6F DB 'Pais: Itanhanem$'
+DFNPC6G DB '===== NPC =====$'
+DFNPC6H DB 'Sou Claiton$'
+DFNPC6I DB 'Tenho 21 anos$'
+DFNPC6J DB 'Venho para passear$'
+
+;=================================
+; NPC 7
+;=================================
+
+DFNPC7 DB '=== Passaporte ===$'
+DFNPC7B DB 'Nome: Enzo$'
+DFNPC7C DB 'Idade: 20$'
+DFNPC7D DB 'Pais: Mais de um Santo$'
+DFNPC7E DB '===== NPC =====$'
+DFNPC7F DB 'Sou Enzo$'
+DFNPC7G DB 'Tenho 21 anos$'
+DFNPC7H DB 'Venho para trabalhar$'
+
+;=================================
+; NPC 8
+;=================================
+
+DFNPC8 DB '=== Passaporte ===$'
+DFNPC8B DB 'Nome: Marcelinho$'
+DFNPC8C DB 'Idade: 29$'
+DFNPC8D DB 'Pais: Chainim Box$'
+DFNPC8E DB '===== NPC =====$'
+DFNPC8F DB 'Sou Marcelinho$'
+DFNPC8G DB 'Tenho 29 anos$'
+DFNPC8H DB 'Venho vender produtos$'
+
+;=================================
+; NPC 9
+;=================================
+
+DFNPC9 DB '=== Passaporti ===$'
+DFNPC9B DB 'Nome: Jeff$'
+DFNPC9C DB 'Idade: 55$'
+DFNPC9D DB 'Pais: Ilha privada$'
+DFNPC9E DB '===== NPC =====$'
+DFNPC9F DB 'Sou Jeff$'
+DFNPC9G DB 'Tenho 55 anos$'
+DFNPC9H DB 'Venho recrutar pessoas$'
+
+;=================================
+; NPC 10
+;=================================
+
+DFNPC10 DB '=== Passaporte ===$'
+DFNPC10B DB 'Nome: Luiz I. da Silva$'
+DFNPC10C DB 'Idade: 74$'
+DFNPC10D DB 'Pais: Detrito Federal$'
+DFNPC10E DB '===== NPC =====$'
+DFNPC10F DB 'Sou Luiz$'
+DFNPC10G DB 'Tenho 74 anos$'
+DFNPC10H DB 'Ganhar votos$'
+
+	;=================================
+	; VETOR NPCS
+	;=================================
+
+	DOCS DW OFFSET DFNPC1
+		DW OFFSET DFNPC2
+		DW OFFSET DFNPC3
+		DW OFFSET DFNPC4
+		DW OFFSET DFNPC5
+		DW OFFSET DFNPC6
+		DW OFFSET DFNPC7
+		DW OFFSET DFNPC8
+		DW OFFSET DFNPC9
+		DW OFFSET DFNPC10
+
+	;=================================
+	; RESPOSTAS
+	;=================================
+
+	RESPS DB 1
+		DB 0
+		DB 0
+		DB 1
+		DB 1
+		DB 0
+		DB 0
+		DB 1
+		DB 0
+		DB 1
+
+	;=================================
+	; MSGS
+	;=================================
+
+	TXT_DECISION DB 'Esquerda=ACEITAR Direita=REJEITAR$',0
+	TXT_OK       DB 'CORRETO$',0
+	TXT_BAD      DB 'ERROU$',0
+	TXT_WIN      DB 'VOCE SOBREVIVEU$',0
 
 ;=======================================================================================
 ;=======================================================================================
