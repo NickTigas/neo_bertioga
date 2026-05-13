@@ -29,6 +29,16 @@ GAME_LOOP:
     PUSH BLACK
     CALL GRAPHICS_PRINTRECT
 
+    ;========================
+    ; PASSAPORTE AZUL
+    ;========================
+
+    PUSH 15     ; X
+    PUSH 10     ; Y
+    PUSH 290    ; WIDTH
+    PUSH 150    ; HEIGHT
+    PUSH 1      ; BLUE
+    CALL GRAPHICS_PRINTRECT
     ;=================================================
     ; NPC 1
     ;=================================================
