@@ -235,9 +235,11 @@
 			
 			;======================
 			
-			CMP [BYTE PTR SI + 1], 0
+			MOV BL,[SI]
 
-			JZ  @@END_PROC  
+			TEST BL,80h
+			JZ @@END_PROC
+
 			INT 10H
 		;}
 		
