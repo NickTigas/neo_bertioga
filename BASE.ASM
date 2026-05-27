@@ -54,6 +54,8 @@ DATASEG
 		INCLUDE "Colors.asm"
 	;}
 
+	
+
 ;=================================
 ; NEO BERTIOGA
 ;=================================
@@ -62,6 +64,17 @@ DATASEG
 	TOTAL_NPCS      DW 10
 
 	CURRENT_RESP    DB 0
+
+;================================
+; BOTOES
+;================================
+
+BTN_PTR      DB 0
+
+STR_ACCEPT   DB 'ACEITAR$'
+STR_REJECT   DB 'REJEITAR$'
+
+BTN_COLORS   DW GREEN,WHITE
 
 ;=================================
 ; NPC 1
@@ -232,10 +245,11 @@ DFNPC10H DB 'Ganhar votos$'
 	; MSGS
 	;=================================
 
-	TXT_DECISION DB 'Esquerda=ACEITAR Direita=REJEITAR$',0
-	TXT_OK       DB 'CORRETO$',0
-	TXT_BAD      DB 'ERROU$',0
-	TXT_WIN      DB 'VOCE SOBREVIVEU$',0
+	TXT_DECISION DB 'Esquerda=ACEITAR Direita=REJEITAR$'
+	TXT_OK       DB 'CORRETO$'
+	TXT_BAD      DB 'ERROU$'
+	TXT_WIN      DB 'VOCE SOBREVIVEU$'
+
 
 ;=======================================================================================
 ;=======================================================================================
@@ -243,17 +257,120 @@ DFNPC10H DB 'Ganhar votos$'
 
 CODESEG
 ;{
-	;PROCEDURES
-	;{
+
+INCLUDE "Text.asm"
+INCLUDE "Graphics.asm"
+INCLUDE "Game.asm"
+INCLUDE "MainMenu.asm"
+INCLUDE "Colors.asm"
+
+PROC PRINT_BUTTONS
+;{
+    PUSH AX
+
+    ;ACEITAR
+    PUSH 10
+    PUSH 22
+    CALL TEXT_SET_CURPOS
+
+    PUSH [WORD PTR BTN_COLORS]
+    PUSH OFFSET STR_ACCEPT
+    CALL TEXT_COLORSTR
+
+    ;REJEITAR
+    PUSH 25
+    PUSH 22
+    CALL TEXT_SET_CURPOS
+
+    PUSH [WORD PTR BTN_COLORS+2]
+    PUSH OFFSET STR_REJECT
+    CALL TEXT_COLORSTR
+
+    POP AX
+RET
+;}
+ENDP PRINT_BUTTONS
+
+PROC BUTTON_INPUT
+;{
+
+    PUSH AX
+
+    ;nova tecla?
+    MOV AH,1
+    INT 16h
+    JZ @@END
+
+    ;lê tecla
+    MOV AH,0
+    INT 16h
+
+    ;seta esquerda
+    CMP AH,4Bh
+    JZ @@LEFT
+
+    ;seta direita
+    CMP AH,4Dh
+    JZ @@RIGHT
+
+    ;enter
+    CMP AH,1Ch
+    JZ @@CLICK
+
+    JMP @@END
 
 
-		INCLUDE "Text.asm"
-		INCLUDE "Graphics.asm" ; responsible for printing everything
-		INCLUDE "Game.asm"
+@@LEFT:
+    MOV [BTN_PTR],0
+    JMP @@UPDATE
 
 
-		INCLUDE "MainMenu.asm" ;code related to main menu
-	;}
+@@RIGHT:
+    MOV [BTN_PTR],1
+    JMP @@UPDATE
+
+
+@@UPDATE:
+
+    ;reset cores
+    MOV [WORD PTR BTN_COLORS],WHITE
+    MOV [WORD PTR BTN_COLORS+2],WHITE
+
+    ;qual botão fica verde
+    CMP [BTN_PTR],0
+    JZ @@ACC
+
+    MOV [WORD PTR BTN_COLORS+2],GREEN
+    JMP @@END
+
+
+@@ACC:
+    MOV [WORD PTR BTN_COLORS],GREEN
+    JMP @@END
+
+
+@@CLICK:
+
+    CMP [BTN_PTR],0
+    JZ @@ACCEPT
+
+    JMP @@REJECT
+
+
+@@ACCEPT:
+    MOV [CURRENT_RESP],1
+    JMP @@END
+
+
+@@REJECT:
+    MOV [CURRENT_RESP],0
+
+
+@@END:
+    POP AX
+RET
+;}
+ENDP BUTTON_INPUT
 
 
 ;=============================================================
@@ -274,7 +391,13 @@ CODESEG
 
 
 		CALL MAINMENU
+		
+		CALL GAME_LOOP
 
+    		CALL BUTTON_INPUT
+    		CALL PRINT_BUTTONS
+
+    		JMP GAME_LOOP
 
 		Exit:
 		call text_Mode

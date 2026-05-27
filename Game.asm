@@ -16,6 +16,9 @@ GAME_LOOP:
     JB @@CONTINUE_GAME
     JMP WIN_GAME
 
+    CALL BUTTON_INPUT
+    CALL PRINT_BUTTONS
+
 @@CONTINUE_GAME:
 
     ;========================
@@ -316,8 +319,8 @@ CHECK_RESP:
 
 @@CORRECT:
 
-    PUSH 5
-    PUSH 25
+    PUSH 0
+    PUSH 72;Y
     CALL TEXT_SET_CURPOS
 
     PUSH GREEN
@@ -333,8 +336,8 @@ CHECK_RESP:
 
 GAME_OVER:
 
-    PUSH 5
-    PUSH 25
+    PUSH 0
+    PUSH 72;Y
     CALL TEXT_SET_CURPOS
 
     PUSH RED
