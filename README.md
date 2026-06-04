@@ -8,7 +8,7 @@ https://www.dosbox.com/download.php?main=1
 
 ---
 
-# Execução do Projeto
+##Execução do Projeto
 
 ```bat
 mount c F:\Pacman
@@ -30,7 +30,7 @@ mount c F:\Neo_Bertioga
 Mas deve-se ser usado o caminho correto onde esta salvo o projeto na sua mpaquina
 ---
 
-# Como Jogar
+##Como Jogar
 
 - Utilize as teclas **↑** e **↓** para navegar pelo menu.
 - Pressione **Enter** para selecionar uma opção.
